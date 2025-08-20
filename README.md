@@ -21,3 +21,27 @@ Go doesn't have classes, but it has struct and methods. It also doesn't have con
 Go doesn't use an external build tool (like Gradle/Maven). The built in Go toolchain handles dependency resolution and builds with `go mod` and `go build` respectively.
 
 Go also comes with its own standard testing package `testing`. It's good enough for unit tests so we don't have to bring in another library (like JUnit). It runs with `go test`. But, there are 3rd party frameworks that could add more expression and capabilities like Testify (rich asserts/mocks), Ginkgo (behavior-driven development), GoMock (mocking library).
+
+## Syntax Cheatsheet
+#### Variable & Assignment
+```go
+var x int = 5                   // explicit type
+var y = 10                      // type inferred
+z := 15                         // declare and assign inside fxns only (type inferred)
+x = 20                          // assignment (update existing var's value)
+```
+
+#### Constants
+```go
+const Hello string = "hello"    // string
+var x, y int = 1, 2             // multi-variable declaration and assignment
+const Pi = 3.14                 // float64
+var isEnabled bool = false      // boolean
+```
+
+## Learning Resources
+Go has pretty good self-learning tools and documentations, along with some other 3rd party resources:
+* https://go.dev/tour/welcome/
+* https://go.dev/doc/tutorial/
+* https://gobyexample.com/
+* https://quii.gitbook.io/learn-go-with-tests
