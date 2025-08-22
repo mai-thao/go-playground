@@ -20,7 +20,7 @@ Go doesn't have classes, but it has struct and methods. It also doesn't have con
 
 Go doesn't use an external build tool (like Gradle/Maven). The built in Go toolchain handles dependency resolution and builds with `go mod` and `go build` respectively.
 
-Go also comes with its own standard testing package `testing`. It's good enough for unit tests so we don't have to bring in another library (like JUnit). It runs with `go test`. But, there are 3rd party frameworks that could add more expression and capabilities like Testify (rich asserts/mocks), Ginkgo (behavior-driven development), GoMock (mocking library).
+Go also comes with its own standard testing package `testing`. It's good enough for unit tests so we don't have to bring in another library (like JUnit). It runs with `go test`. But, there are 3rd party frameworks that could add more expression and capabilities like [Testify](https://github.com/stretchr/testify?tab=readme-ov-file) (rich asserts/mocks) or [Ginkgo](https://onsi.github.io/ginkgo/) (behavior-driven development).
 
 ## Syntax Cheatsheet
 #### Variable & Assignment
