@@ -1,0 +1,9 @@
+# book-server
+This is a simple book server that exposes a RESTful API to interact with its resources.
+
+### How to Run the App
+1) Execute the command: `go run .`
+2) Terminate the app with: Ctrl + C 
+
+### How to Get Dependencies
+1) Execute the command: `go get .` (resolve and download dependencies for code in the current directory)
