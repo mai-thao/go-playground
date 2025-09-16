@@ -23,8 +23,23 @@ func getBooks(c *gin.Context) {
     c.IndentedJSON(http.StatusOK, books)
 }
 
+func getBookByID(c *gin.Context) {
+    id := c.Param("id")
+
+    for _, book := range books {
+        if book.ID == id {
+            c.IndentedJSON(http.StatusOK, book)
+            return
+        }
+    }
+    c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Book not found!"})
+}
+
 func main() {
     router := gin.Default()
+
     router.GET("/books", getBooks)
+    router.GET("/books/:id", getBookByID)
+
     router.Run("localhost:8080")
 }
