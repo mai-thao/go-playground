@@ -43,6 +43,13 @@ func createBook(c *gin.Context) {
         return
     }
 
+    for _, book := range books {
+        if book.ID == newBook.ID {
+            c.IndentedJSON(http.StatusConflict, gin.H{"message": "Book ID already exists!"})
+            return
+        }
+    }
+
     books = append(books, newBook)
     c.IndentedJSON(http.StatusCreated, newBook)
 }
