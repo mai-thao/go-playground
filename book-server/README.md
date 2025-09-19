@@ -1,5 +1,5 @@
 # book-server
-This is a simple book server that exposes a RESTful API to interact with its resources.
+This is a simple book server that exposes a RESTful API to interact with its book resource. It uses the [Gin](https://gin-gonic.com/en/docs/) web framework.
 
 ### How to Run the App
 1) Execute the command: `go run .`
