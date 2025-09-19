@@ -3,6 +3,7 @@ package main
 import (
     "net/http"
     "github.com/gin-gonic/gin"
+    "log"
 )
 
 type book struct {
@@ -39,18 +40,21 @@ func createBook(c *gin.Context) {
     var newBook book
 
     if err := c.ShouldBindJSON(&newBook); err != nil {
+        log.Println("Client error occurred. " + err.Error())
     	c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "Error: " + err.Error()})
         return
     }
 
     for _, book := range books {
         if book.ID == newBook.ID {
+            log.Printf("Book ID=%s already exists. New book creation failed.\n", newBook.ID)
             c.IndentedJSON(http.StatusConflict, gin.H{"message": "Book ID already exists!"})
             return
         }
     }
 
     books = append(books, newBook)
+    log.Printf("New book created: ID=%s, Title=%s\n", newBook.ID, newBook.Title)
     c.IndentedJSON(http.StatusCreated, newBook)
 }
 
