@@ -39,6 +39,16 @@ const Pi = 3.14                 // float64
 var isEnabled bool = false      // boolean
 ```
 
+#### Data Structures
+```go
+Arrays
+Slices
+Map
+Struct
+Pointer
+Channel (for goroutines concurrency)
+```
+
 ## Learning Resources
 Go has pretty good self-learning tools and documentations, along with some other 3rd party resources:
 * https://go.dev/tour/welcome/
