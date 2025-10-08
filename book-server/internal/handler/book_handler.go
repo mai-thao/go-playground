@@ -8,7 +8,7 @@ import (
 	"book-server/internal/model"
 )
 
-var books = []book{
+var books = []model.Book{
     {ID: "1", Title: "Life of Pi", Author: "Yann Martel", PublicationYear: 2001, Isbn: "0-676-97376-0"},
     {ID: "2", Title: "The Kite Runner", Author: "Khaled Hosseini", PublicationYear: 2003, Isbn: "1-57322-245-3"},
     {ID: "3", Title: "The Pragmatic Programmer", Author: "Andrew Hunt and David Thomas", PublicationYear: 1999, Isbn: "978-0135957059"},
@@ -19,7 +19,6 @@ func RegisterRoutes(router *gin.Engine) {
 	router.GET("/books/:id", getBookByID)
 	router.POST("/books", createBook)
 }
-
 
 func getBooks(c *gin.Context) {
     c.IndentedJSON(http.StatusOK, books)
@@ -38,7 +37,7 @@ func getBookByID(c *gin.Context) {
 }
 
 func createBook(c *gin.Context) {
-    var newBook book
+    var newBook model.Book
 
     if err := c.ShouldBindJSON(&newBook); err != nil {
         log.Println("Client error occurred. " + err.Error())

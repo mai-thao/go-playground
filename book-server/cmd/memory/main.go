@@ -7,6 +7,6 @@ import (
 
 func main() {
     router := gin.Default()
-    handler.RegisterRoutes(r)
+    handler.RegisterRoutes(router)
     router.Run("localhost:8080")
 }
