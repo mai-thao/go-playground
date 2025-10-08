@@ -14,10 +14,10 @@ var books = []model.Book{
     {ID: "3", Title: "The Pragmatic Programmer", Author: "Andrew Hunt and David Thomas", PublicationYear: 1999, Isbn: "978-0135957059"},
 }
 
-func RegisterRoutes(router *gin.Engine) {
-	router.GET("/books", getBooks)
-	router.GET("/books/:id", getBookByID)
-	router.POST("/books", createBook)
+func RegisterRoutes(r *gin.Engine) {
+	r.GET("/books", getBooks)
+	r.GET("/books/:id", getBookByID)
+	r.POST("/books", createBook)
 }
 
 func getBooks(c *gin.Context) {

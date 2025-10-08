@@ -1,6 +1,7 @@
 # book-server
-This is a simple book server that exposes a RESTful API to interact with its book resource. Its data are stored in memory
-with a slice. It uses the [Gin](https://gin-gonic.com/en/docs/) web framework.
+This is a simple book server that exposes a RESTful API to interact with its book resource. Its data are stored in memory using a slice. 
+
+It uses the [Gin](https://gin-gonic.com/en/docs/) web framework and follows the opinionated [golang-standards](https://github.com/golang-standards/project-layout) project layout.
 
 ### How to Run the App
 1) Execute the command: `go run ./cmd/memory`
