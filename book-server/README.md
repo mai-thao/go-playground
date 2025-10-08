@@ -4,7 +4,8 @@ with a slice. It uses the [Gin](https://gin-gonic.com/en/docs/) web framework.
 
 ### How to Run the App
 1) Execute the command: `go run ./cmd/memory`
-2) Terminate the app with: Ctrl + C 
+2) Interact with the endpoints exposed by this API using [Insomnia](https://insomnia.rest/features/api-testing) (or [Postman](https://www.postman.com/product/what-is-postman/), [curl](https://curl.se/))
+3) Terminate the app with: Ctrl + C 
 
 ### How to Get Dependencies
 1) Execute the command: `go get .` (resolve and download dependencies for code in the current directory)
