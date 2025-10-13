@@ -18,10 +18,26 @@ func main() {
         log.Fatal(err)
     }
     if err = db.Ping(); err != nil {
-        log.Println("Database ping failed!")
+        log.Println("Database ping failed")
         log.Fatal(err)
     }
     log.Println("Successfully connected to Postgres database!")
+
+    tableCreationSql := `
+        CREATE TABLE IF NOT EXISTS books (
+            id SERIAL PRIMARY KEY,
+            title VARCHAR,
+            author VARCHAR,
+            publication_year INTEGER,
+            isbn VARCHAR
+        );
+    `
+
+    _, err = db.Exec(tableCreationSql)
+    if err != nil {
+        log.Println("Database migration failed")
+        log.Fatal(err)
+    }
 
     router := gin.Default()
     handler.RegisterRoutes(router)
