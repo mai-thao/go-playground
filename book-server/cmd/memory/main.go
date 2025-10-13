@@ -38,6 +38,7 @@ func main() {
         log.Println("Database migration failed")
         log.Fatal(err)
     }
+    log.Println("Successfully created new books table!")
 
     router := gin.Default()
     handler.RegisterRoutes(router)
