@@ -13,9 +13,10 @@ var Db *sql.DB
 
 // ConnectStandard connects and persists data to Postgres DB using Go's built in standard SQL package (raw SQL)
 func ConnectStandard() {
+    var err error
     log.Println("Attempting to connect to Postgres database...")
     connStr := "postgres://adminmt:adminpw@localhost:5432/bookdb?sslmode=disable"
-    Db, err := sql.Open("postgres", connStr)
+    Db, err = sql.Open("postgres", connStr)
 
     if err != nil {
         log.Fatal(err)
