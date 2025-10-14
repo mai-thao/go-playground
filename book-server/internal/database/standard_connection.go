@@ -3,6 +3,7 @@ package database
 import (
     "log"
     "database/sql"
+    "math/rand"
 
     _ "github.com/lib/pq"
     "book-server/internal/model"
@@ -40,7 +41,7 @@ func Connect() {
     log.Println("Successfully created new books table!")
 
     book := model.Book{
-        ID: 3,
+        ID: rand.Intn(100),
         Title: "The Pragmatic Programmer",
         Author: "Andrew Hunt and David Thomas",
         PublicationYear: 1999,
