@@ -9,16 +9,18 @@ import (
     "book-server/internal/model"
 )
 
+var Db *sql.DB
+
 // ConnectStandard connects and persists data to Postgres DB using Go's built in standard SQL package (raw SQL)
 func ConnectStandard() {
     log.Println("Attempting to connect to Postgres database...")
     connStr := "postgres://adminmt:adminpw@localhost:5432/bookdb?sslmode=disable"
-    db, err := sql.Open("postgres", connStr)
-    defer db.Close()
+    Db, err := sql.Open("postgres", connStr)
+
     if err != nil {
         log.Fatal(err)
     }
-    if err = db.Ping(); err != nil {
+    if err = Db.Ping(); err != nil {
         log.Println("Database ping failed")
         log.Fatal(err)
     }
@@ -34,7 +36,7 @@ func ConnectStandard() {
         );
     `
 
-    _, err = db.Exec(tableCreationSql)
+    _, err = Db.Exec(tableCreationSql)
     if err != nil {
         log.Println("Database migration failed")
         log.Fatal(err)
@@ -57,7 +59,7 @@ func ConnectStandard() {
         ) RETURNING id
     `
 
-    err = db.QueryRow(insertSql, book.ID, book.Title, book.Author, book.PublicationYear, book.Isbn).Scan(&book.ID)
+    err = Db.QueryRow(insertSql, book.ID, book.Title, book.Author, book.PublicationYear, book.Isbn).Scan(&book.ID)
     if err != nil {
         log.Println("Database insertion failed")
         log.Fatal(err)
