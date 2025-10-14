@@ -9,6 +9,7 @@ import (
 func main() {
     database.ConnectStandard()
     database.ConnectOrm()
+    defer database.Db.Close()
 
     router := gin.Default()
     handler.RegisterRoutes(router)
