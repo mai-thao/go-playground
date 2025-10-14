@@ -7,13 +7,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"book-server/internal/model"
+    "book-server/internal/database"
 )
-
-var books = []model.Book{
-    {ID: 1, Title: "Life of Pi", Author: "Yann Martel", PublicationYear: 2001, Isbn: "0-676-97376-0"},
-    {ID: 2, Title: "The Kite Runner", Author: "Khaled Hosseini", PublicationYear: 2003, Isbn: "1-57322-245-3"},
-    {ID: 3, Title: "The Pragmatic Programmer", Author: "Andrew Hunt and David Thomas", PublicationYear: 1999, Isbn: "978-0135957059"},
-}
 
 func RegisterRoutes(r *gin.Engine) {
 	r.GET("/books", getBooks)
@@ -51,15 +46,18 @@ func createBook(c *gin.Context) {
         return
     }
 
-    for _, book := range books {
-        if book.ID == newBook.ID {
-            log.Printf("Book ID=%s already exists. New book creation failed.\n", newBook.ID)
-            c.IndentedJSON(http.StatusConflict, gin.H{"message": "Book ID already exists!"})
-            return
-        }
+    insertSql := `
+        INSERT INTO books (
+            id, title, author, publication_year, isbn
+        ) VALUES (
+            $1, $2, $3, $4, $5
+        ) RETURNING id
+    `
+    err := database.Db.QueryRow(insertSql, newBook.ID, newBook.Title, newBook.Author, newBook.PublicationYear, newBook.Isbn).Scan(&newBook.ID)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"message": "Error: " + err.Error()})
+        return
     }
-
-    books = append(books, newBook)
     log.Printf("New book created: ID=%d, Title=%s\n", newBook.ID, newBook.Title)
     c.IndentedJSON(http.StatusCreated, newBook)
 }
