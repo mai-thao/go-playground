@@ -19,7 +19,6 @@ func ConnectOrm() {
         log.Fatal(err)
     }
 
-    db.AutoMigrate(&model.Book{})
     book := model.Book{
         ID: rand.Intn(100),
         Title: "The Pragmatic Programmer",
