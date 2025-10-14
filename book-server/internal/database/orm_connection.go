@@ -9,6 +9,7 @@ import (
     "book-server/internal/model"
 )
 
+// ConnectOrm connects and persists data to Postgres DB using GORM as the Object-Relational Mapper layer
 func ConnectOrm() {
     connStr := "postgres://adminmt:adminpw@localhost:5432/bookdb?sslmode=disable"
     db, err := gorm.Open(postgres.Open(connStr), &gorm.Config{})

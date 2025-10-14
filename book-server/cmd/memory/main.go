@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-    database.Connect()
+    database.ConnectStandard()
+    database.ConnectOrm()
 
     router := gin.Default()
     handler.RegisterRoutes(router)
