@@ -10,14 +10,32 @@ import (
 )
 
 func RegisterRoutes(r *gin.Engine) {
-// 	r.GET("/books", getBooks)
+	r.GET("/books", getBooks)
 // 	r.GET("/books/:id", getBookByID)
 	r.POST("/books", createBook)
 }
 
-// func getBooks(c *gin.Context) {
-//     c.IndentedJSON(http.StatusOK, books)
-// }
+func getBooks(c *gin.Context) {
+    rows, err := database.Db.Query("SELECT * FROM books")
+    if err != nil {
+        c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": "Error: " + err.Error()})
+        return
+    }
+    defer rows.Close()
+
+    var books []model.Book
+    for rows.Next() {
+        var book model.Book
+        if err := rows.Scan(&book.ID, &book.Title, &book.Author, &book.PublicationYear, &book.Isbn); err != nil {
+            c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": "Error: " + err.Error()})
+            return
+        }
+        books = append(books, book)
+    }
+
+    c.IndentedJSON(http.StatusOK, books)
+}
+
 //
 // func getBookByID(c *gin.Context) {
 //     idStr := c.Param("id")
