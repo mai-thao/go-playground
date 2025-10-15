@@ -15,6 +15,7 @@ func RegisterRoutes(r *gin.Engine) {
 	r.POST("/books", createBook)
 }
 
+// Helpful Go data querying doc: https://go.dev/doc/database/querying
 func getBooks(c *gin.Context) {
     rows, err := database.Db.Query("SELECT * FROM books")
     if err != nil {
@@ -32,6 +33,7 @@ func getBooks(c *gin.Context) {
         }
         books = append(books, book)
     }
+    log.Printf("Retrieved %d books\n", len(books))
 
     c.IndentedJSON(http.StatusOK, books)
 }
