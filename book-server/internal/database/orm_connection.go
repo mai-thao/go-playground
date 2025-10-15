@@ -28,4 +28,9 @@ func ConnectOrm() {
     }
     db.Create(&book)
     log.Printf("Inserted book via ORM with ID: %d", book.ID)
+
+    var books []model.Book
+    db.Find(&books)
+
+    log.Printf("Queried for %d books via ORM", len(books))
 }
