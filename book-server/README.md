@@ -10,7 +10,8 @@ It uses the [Gin](https://gin-gonic.com/en/docs/) web framework and follows the 
 
 ### How to Get Dependencies
 1) Execute the command: `go get .` (resolve and download dependencies for code in the current directory)
-   2) `go mod tidy` to add missing modules and remove unused modules
+   1) `go mod tidy` to add missing modules and remove unused modules
+   2) `go clean -modcache` to remove entire module download cache
 
 ### Wishlist
 * Write tests
