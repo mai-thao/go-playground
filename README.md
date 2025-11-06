@@ -4,6 +4,8 @@ Learning about [Go (golang)](https://go.dev/) through building of small projects
 ## Notes
 Go has a minimalistic and simple syntax similar to C **except** that it has built in garbage collection where we don't have to manually manage memory (no usages of `malloc()`, `free()` that coud lead to memory issues like dangling pointers, segfaults, etc.).
 
+Go compiles straight into machine code and does not need an interpreter or a virtual machine (VM) to run.
+
 Go supports some object-orientated principles: encapsulation, polymorphism, abstraction, and composition, but doesn't have classes or inheritance. 
 * Encapsulation: 
     * Capitalized names -> exported (public) e.g. `var ApiKey = 123abc`
