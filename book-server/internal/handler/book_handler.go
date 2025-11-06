@@ -14,6 +14,7 @@ func RegisterRoutes(r *gin.Engine) {
 	r.GET("/books", getBooks)
 	r.GET("/books/:id", getBookByID)
 	r.POST("/books", createBook)
+	r.DELETE("/books/:id", deleteBook)
 }
 
 // Helpful Go data querying doc: https://go.dev/doc/database/querying
