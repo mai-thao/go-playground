@@ -81,3 +81,15 @@ func createBook(c *gin.Context) {
     log.Printf("New book created: ID=%d, Title=%s\n", newBook.ID, newBook.Title)
     c.IndentedJSON(http.StatusCreated, newBook)
 }
+
+func deleteBook(c *gin.Context) {
+    id := c.Param("id")
+
+    _, err := database.Db.Exec("DELETE FROM books where id = $1", id)
+    if err != nil {
+        c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": "Error: " + err.Error()})
+        return
+    }
+
+    c.Status(http.StatusNoContent)
+}
