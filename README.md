@@ -39,14 +39,27 @@ const Pi = 3.14                 // float64
 var isEnabled bool = false      // boolean
 ```
 
-#### Data Structures
+#### Primitives
 ```go
-Arrays
-Slices
-Map
-Struct
-Pointer
-Channel (for goroutines concurrency)
+bool
+int
+float32/float64
+string
+```
+
+#### Data Structures
+_Value type_: when it is passed to a function, a complete copy of the underlying data is made. Changes to the copied value do not affect the original.
+
+_Reference type_: when it is passed to a function, a copy of the reference (a pointer to the underlying data) is made, not a copy of the data itself. 
+Both the original and the copied reference point to the same underlying data in memory. Changes made through one reference will be visible through the other.
+
+```go
+Arrays (value type)
+Struct (value type)
+Slices (reference type)
+Map (reference type)
+Pointer (reference type)
+Channel - for goroutines concurrency (reference type)
 ```
 
 ## Learning Resources
