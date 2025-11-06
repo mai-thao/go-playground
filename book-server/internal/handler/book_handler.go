@@ -44,7 +44,7 @@ func getBookByID(c *gin.Context) {
     var book model.Book
     id := c.Param("id")
     row := database.Db.QueryRow("SELECT * FROM books WHERE id = $1", id)
-    err := row.Scan(&book)
+    err := row.Scan(&book.ID, &book.Title, &book.Author, &book.PublicationYear, &book.Isbn)
     if err != nil {
         if err == sql.ErrNoRows {
             c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Book not found!"})
