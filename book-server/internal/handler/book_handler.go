@@ -3,6 +3,7 @@ package handler
 import (
 	"net/http"
 	"log"
+	"database/sql"
 
 	"github.com/gin-gonic/gin"
 	"book-server/internal/model"
@@ -11,7 +12,7 @@ import (
 
 func RegisterRoutes(r *gin.Engine) {
 	r.GET("/books", getBooks)
-// 	r.GET("/books/:id", getBookByID)
+	r.GET("/books/:id", getBookByID)
 	r.POST("/books", createBook)
 }
 
@@ -38,23 +39,23 @@ func getBooks(c *gin.Context) {
     c.IndentedJSON(http.StatusOK, books)
 }
 
-//
-// func getBookByID(c *gin.Context) {
-//     idStr := c.Param("id")
-//     id, err := strconv.Atoi(idStr)
-//     if err != nil {
-//         c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "Error: Invalid ID"})
-//         return
-//     }
-//
-//     for _, book := range books {
-//         if book.ID == id {
-//             c.IndentedJSON(http.StatusOK, book)
-//             return
-//         }
-//     }
-//     c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Book not found!"})
-// }
+
+func getBookByID(c *gin.Context) {
+    var book model.Book
+    id := c.Param("id")
+    row := database.Db.QueryRow("SELECT * FROM books WHERE id = $1", id)
+    err := row.Scan(&book)
+    if err != nil {
+        if err == sql.ErrNoRows {
+            c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Book not found!"})
+            return
+        }
+        c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": "Error: " + err.Error()})
+        return
+    }
+
+    c.IndentedJSON(http.StatusOK, book)
+}
 
 func createBook(c *gin.Context) {
     var newBook model.Book
