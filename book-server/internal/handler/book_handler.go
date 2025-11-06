@@ -75,7 +75,7 @@ func createBook(c *gin.Context) {
     `
     err := database.Db.QueryRow(insertSql, newBook.ID, newBook.Title, newBook.Author, newBook.PublicationYear, newBook.Isbn).Scan(&newBook.ID)
     if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"message": "Error: " + err.Error()})
+        c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": "Error: " + err.Error()})
         return
     }
     log.Printf("New book created: ID=%d, Title=%s\n", newBook.ID, newBook.Title)
