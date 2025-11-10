@@ -19,7 +19,7 @@ func RegisterRoutes(r *gin.Engine) {
 }
 
 func ping(c *gin.Context) {
-    c.IndentedJSON(http.StatusOK, "pong")
+    c.String(http.StatusOK, "pong")
 }
 
 // Helpful Go data querying doc: https://go.dev/doc/database/querying
