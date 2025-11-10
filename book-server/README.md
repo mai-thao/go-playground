@@ -12,8 +12,8 @@ It uses the [Gin](https://gin-gonic.com/en/docs/) web framework and follows the 
 
 ### How to Test the App
 1) Run all the tests with: `go test ./...` (`-v` option adds verbosity)
-   1) Run a specific package with: `go test ./handlers`
-   2) Run a specific test function with: `go test -run TestPingRoute ./tests`
+   1) Run a specific package with: `go test ./internal/handler`
+   2) Run a specific test function with: `go test -run TestPingRoute ./internal/handler`
 
 ### How to Get Dependencies
 1) Execute the command: `go get .` (resolve and download dependencies for code in the current directory)
