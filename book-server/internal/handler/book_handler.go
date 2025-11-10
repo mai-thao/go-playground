@@ -15,6 +15,11 @@ func RegisterRoutes(r *gin.Engine) {
 	r.GET("/books/:id", getBookByID)
 	r.POST("/books", createBook)
 	r.DELETE("/books/:id", deleteBook)
+	r.GET("/ping", ping)
+}
+
+func ping(c *gin.Context) {
+    c.IndentedJSON(http.StatusOK, "pong")
 }
 
 // Helpful Go data querying doc: https://go.dev/doc/database/querying
